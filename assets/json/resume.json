@@ -1,61 +1,60 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "Lavsen Dahal",
+    "label": "PhD Student",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
-    "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "email": "lavsen.dahal@gmail.com",
+
+    "url": "https://lavsendahal.github.io/",
+    "summary": "Phd Student in Medical Imaging at Electrical and Computer Engineering Department, Duke University",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "Hock Plaza, 2424 Erwin Road",
+      "postalCode": "27705",
+      "city": "Durham",
+      "region": "North Carolina"
     },
     "profiles": [
       {
         "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
+        "username": "lavsendahal",
+        "url": "https://twitter.com/lavsendahal"
       }
     ]
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
+      "name": "Duke University",
+      "position": "Research Associate",
+      "url": "https://cvit.duke.edu",
+      "startDate": "2022-06-06",
+      "endDate": "2023-07-06",
+      "summary": "Development of Anthropomorphic Phantoms.",
       "highlights": [
-        "Relativity"
+        "Deep Learning"
       ]
     }
   ],
   "volunteer": [],
   "education": [
     {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
+      "institution": "Duke University",
+      "url": "https://www.cvit.duke.edu/",
+      "area": "Medical Imaging",
       "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
+      "startDate": "2023-08",
+      "endDate": "Present",
       "score": "",
       "courses": [
-        "Theory of Relativity"
+        "Natural Language Processing, Computer Engineering : Machine Learing and Deep Learning"
       ]
     }
   ],
   "awards": [
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "title": "Erasmus+ Scholarship",
+      "date": "2017",
+      "awarder": "European Union",
+      "summary": "Full-ride scholarship to pursue Master's in Medical Imaging and Applications"
     }
   ],
   "certificates": [],
@@ -63,7 +62,7 @@
   "skills": [],
   "languages": [
     {
-      "language": "German",
+      "language": "Nepali",
       "fluency": "Native speaker"
     },
     {
