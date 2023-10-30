@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: <a href='https://cvit.duke.edu/'>Center for Virtual Imaging Trials</a>. Address. Contacts. Moto. Etc.
 
 profile:
   align: right
