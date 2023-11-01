@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: <a href='https://cvit.duke.edu/'>Center for Virtual Imaging Trials, Duke University, USA.</a>
 
