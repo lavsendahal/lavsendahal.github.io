@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Lavsen Dahal</title>
+    <meta name="description" content="Publications by Lavsen Dahal">
+    <meta name="author" content="Lavsen Dahal">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Lavsen Dahal</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">about</a></li>
+                <li><a href="publications.html" class="nav-link active">publications</a></li>
+                <li><a href="Resume_Medical_Imaging_Lavsen_Dahal.pdf" class="nav-link" target="_blank">cv</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-narrow">
+
+            <section class="page-header">
+                <h1 class="page-title">publications</h1>
+                <div class="publications-note">
+                    <p>Publications are automatically fetched from <a href="https://www.semanticscholar.org/" target="_blank">Semantic Scholar</a>.
+                    For the most up-to-date list, visit my <a href="https://scholar.google.com/citations?user=52zp7VkAAAAJ&hl=en" target="_blank">Google Scholar profile</a>.</p>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div id="publicationsLoading" class="loading-state">
+                <div class="spinner-minimal"></div>
+                <p>Loading publications...</p>
+            </div>
+
+            <!-- Publications List -->
+            <section id="publicationsList" class="publications-full-list" style="display: none;">
+                <!-- Publications will be dynamically inserted here -->
+            </section>
+
+            <!-- Error State -->
+            <div id="publicationsError" class="error-state" style="display: none;">
+                <p><i class="fas fa-exclamation-circle"></i> Unable to automatically fetch publications. Showing manually curated list:</p>
+            </div>
+
+            <!-- Fallback Publications -->
+            <section id="fallbackPublications" class="publications-full-list" style="display: none;">
+
+                <div class="pub-year-group">
+                    <h3 class="year-heading">2025</h3>
+
+                    <div class="pub-item-full">
+                        <div class="pub-title">Five Models for Five Modalities: Open-Vocabulary Segmentation in Medical Imaging</div>
+                        <div class="pub-authors"><strong>L. Dahal</strong>, Y. Bhandari, P. Segars, J. Lo</div>
+                        <div class="pub-venue">Computer Vision and Pattern Recognition (CVPR), 2025</div>
+                        <div class="pub-meta">
+                            <span class="pub-type">Conference</span>
+                        </div>
+                    </div>
+
+                    <div class="pub-item-full">
+                        <div class="pub-title">XCAT 3.0: A Comprehensive Library of Personalized Digital Twins Derived from CT Scans</div>
+                        <div class="pub-authors"><strong>L. Dahal</strong>, M. Ghojoghnejad, L. Vancoillie, D. Ghosh, et al.</div>
+                        <div class="pub-venue">Medical Image Analysis, 2025</div>
+                        <div class="pub-meta">
+                            <span class="pub-type">Journal</span>
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://xcat-3.github.io" target="_blank"><i class="fas fa-globe"></i> project page</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pub-year-group">
+                    <h3 class="year-heading">2023</h3>
+
+                    <div class="pub-item-full">
+                        <div class="pub-title">Automatic Quality Control in Computed Tomography Volumes Segmentation Using a Small Set of XCAT as Reference Images</div>
+                        <div class="pub-authors"><strong>L. Dahal</strong>, Y. Wang, F.I. Tushar, I. Montero, et al.</div>
+                        <div class="pub-venue">Medical Imaging 2023: Image Processing, SPIE</div>
+                        <div class="pub-meta">
+                            <span class="pub-type">Conference</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pub-year-group">
+                    <h3 class="year-heading">2020</h3>
+
+                    <div class="pub-item-full">
+                        <div class="pub-title">Uncertainty Estimation in Deep 2D Echocardiography Segmentation</div>
+                        <div class="pub-authors"><strong>L. Dahal</strong>, A. Kafle, B. Khanal</div>
+                        <div class="pub-venue">arXiv preprint</div>
+                        <div class="pub-meta">
+                            <span class="pub-type">Preprint</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-narrow">
+            <p>&copy; 2025 Lavsen Dahal</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Auto-fetch publications when page loads
+        if (typeof fetchSemanticScholarPublications === 'function') {
+            fetchSemanticScholarPublications('Lavsen Dahal');
+        } else {
+            // Fallback if function not available
+            document.getElementById('publicationsLoading').style.display = 'none';
+            document.getElementById('publicationsError').style.display = 'block';
+            document.getElementById('fallbackPublications').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
