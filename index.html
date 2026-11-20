@@ -1,186 +1,185 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lavsen Dahal</title>
-    <meta name="description" content="Lavsen Dahal - PhD student at Duke University specializing in Computer Vision and Medical Imaging">
-    <meta name="author" content="Lavsen Dahal">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lavsen Dahal</title>
+<meta name="description" content="Lavsen Dahal — PhD researcher at Duke University working on personalized digital human twins, 4D physiological simulation, 3D medical vision, and AI agents.">
+<meta name="theme-color" content="#ffffff">
+<style>
+:root{
+  --paper:#ffffff;
+  --ink:#14171a;
+  --body:#363c44;
+  --muted:#67707c;
+  --line:#e6e8ec;
+  --accent:#184a8c;
+  --sans:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.68;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;text-underline-offset:3px}
+a:hover{text-decoration:underline}
+button{font:inherit}
+.wrap{width:min(880px,calc(100% - 48px));margin:auto}
+
+header{padding:28px 0 22px;border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.name{font-size:17px;font-weight:600;letter-spacing:-.3px;color:var(--ink);text-decoration:none}
+.name:hover{text-decoration:none;color:var(--accent)}
+.navlinks{display:flex;gap:20px;flex-wrap:wrap;font-size:14px}
+.navlinks a{color:var(--muted)}
+.navlinks a:hover{color:var(--ink);text-decoration:none}
+
+.intro-row{display:grid;grid-template-columns:1.35fr 1fr;gap:36px;align-items:center;padding:44px 0 42px;border-bottom:1px solid var(--line)}
+.bio h1{font-size:26px;font-weight:600;letter-spacing:-.6px;margin:0 0 14px;line-height:1.25}
+.bio p{margin:0 0 14px;color:var(--body)}
+.bio p:last-of-type{margin-bottom:18px}
+.bio-links{display:flex;gap:16px;flex-wrap:wrap;font-size:14px}
+
+.pc-wrap{display:flex;flex-direction:column;align-items:center}
+#pc-stage{position:relative;width:100%;height:300px}
+#pc-canvas{display:block;width:100%;height:100%}
+.pc-caption{margin-top:4px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+.pc-caption button{border:0;background:transparent;color:var(--muted);padding:0;cursor:pointer;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.pc-caption button:hover{color:var(--ink)}
+
+.section{padding:40px 0}
+.section-title{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:0 0 8px}
+
+.work-item{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start;padding:26px 0;border-bottom:1px solid var(--line)}
+.work-item.text-only{grid-template-columns:1fr}
+.work-media{border-radius:6px;overflow:hidden;border:1px solid var(--line);background:#fff;position:relative}
+.work-media.dark{background:#0b0e12;border-color:#1c222b}
+.work-media img,.work-media video{display:block;width:100%;height:auto}
+#motion-pause{position:absolute;right:8px;bottom:8px;background:rgba(255,255,255,.9);border:0;border-radius:4px;color:#14171a;padding:3px 9px;font-size:11px;cursor:pointer}
+#motion-pause:hover{background:#fff}
+
+.work-body h2{font-size:18px;font-weight:600;letter-spacing:-.25px;margin:0 0 4px;line-height:1.3}
+.work-meta{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 10px}
+.work-body p{margin:0 0 12px;color:var(--body);font-size:14.5px;line-height:1.62}
+.work-links{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;font-weight:500}
+
+.note{padding:26px 0 6px;font-size:14.5px;color:var(--muted);line-height:1.65}
+.note strong{color:var(--ink);font-weight:500}
+
+footer{margin-top:34px;padding:22px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+footer a:hover{color:var(--ink)}
+
+@media(max-width:740px){
+  .wrap{width:calc(100% - 32px)}
+  .intro-row{grid-template-columns:1fr;gap:22px;padding:30px 0}
+  #pc-stage{height:250px}
+  .work-item{grid-template-columns:1fr;gap:14px}
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">Lavsen Dahal</a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link active">about</a></li>
-                <li><a href="publications.html" class="nav-link">publications</a></li>
-                <li><a href="Resume_Medical_Imaging_Lavsen_Dahal.pdf" class="nav-link" target="_blank">cv</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+<header>
+  <nav class="wrap" aria-label="Main navigation">
+    <a class="name" href="#">Lavsen Dahal</a>
+    <div class="navlinks">
+      <a href="#work">Work</a>
+      <a href="https://scholar.google.com/citations?user=52zp7VkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+      <a href="https://github.com/lavsendahal" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/lavsen" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:lavsen.dahal@duke.edu">Email</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="intro-row" aria-label="Introduction">
+    <div class="bio">
+      <h1>Hi, I’m Lavsen.</h1>
+      <p>I’m a PhD student in Electrical &amp; Computer Engineering at <a href="https://www.duke.edu/" target="_blank" rel="noopener noreferrer">Duke University</a>, working with the <a href="https://cvit.duke.edu/" target="_blank" rel="noopener noreferrer">Center for Virtual Imaging Trials</a>. My research focuses on computational models of the human body—turning static medical scans into personalized digital twins and physiologically grounded 4D motion—alongside 3D medical vision and AI agents for imaging research.</p>
+      <p>Previously, I spent six months as a research intern with the cardiovascular imaging team at Siemens Healthineers. Before Duke, I earned my Erasmus Mundus Joint Master’s in Medical Imaging and Applications (MAIA) across France, Italy, and Spain, with prior research at <a href="https://biomedia.doc.ic.ac.uk/" target="_blank" rel="noopener noreferrer">BioMedIA (Imperial College London)</a>, <a href="https://vicorob.udg.edu/" target="_blank" rel="noopener noreferrer">VICOROB</a>, and <a href="https://www.naamii.org.np/" target="_blank" rel="noopener noreferrer">NAAMII</a> in Nepal.</p>
+      <div class="bio-links">
+        <a href="https://scholar.google.com/citations?user=52zp7VkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>
+        <a href="https://github.com/lavsendahal" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="https://linkedin.com/in/lavsen" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="pc-wrap">
+      <div id="pc-stage">
+        <canvas id="pc-canvas" role="img" aria-label="Live 3D respiratory anatomy point cloud"></canvas>
+      </div>
+      <div class="pc-caption">
+        <span>4D respiratory anatomy</span>
+        <span>·</span>
+        <button id="pc-pause" type="button" aria-pressed="false">Pause</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <h2 class="section-title" id="work-title">Selected Work</h2>
+
+    <article class="work-item">
+      <div class="work-media dark" id="motion-preview">
+        <video id="project-motion" width="600" height="360" poster="assets/motion/deep/anatomy-poster.png" data-src="assets/motion/deep/anatomy-motion.webm" muted loop playsinline preload="none" aria-label="Simulated 4D respiratory anatomy in deep inspiration"></video>
+        <button id="motion-pause" type="button" aria-controls="project-motion" aria-pressed="true" disabled>Play</button>
+      </div>
+      <div class="work-body">
+        <h2><a href="motion.html" style="color:inherit">Dynamic Anatomical Twins</a></h2>
+        <p class="work-meta">Ongoing · 4D Physiological Simulation</p>
+        <p>Generating continuous, physiologically grounded 4D respiratory motion from a single static 3D segmentation—combining rigid ribcage kinematics, conforming costal cartilages, pulmonary vasculature, diaphragm-coupled abdominal wall mechanics, and deformed 4D attenuation volumes without image registration.</p>
+        <div class="work-links">
+          <a href="motion.html">Explore interactive 4D showcase →</a>
         </div>
-    </nav>
+      </div>
+    </article>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container-narrow">
-
-            <!-- Profile Section -->
-            <section class="profile">
-                <div class="profile-grid">
-                    <div class="profile-image-wrapper">
-                        <div class="profile-image">
-                            <img src="assets/lav.jpeg" alt="Lavsen Dahal" id="profileImage">
-                            <div class="image-placeholder" id="imagePlaceholder">
-                                <i class="fas fa-user"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="profile-info">
-                        <h1 class="profile-name">Lavsen Dahal</h1>
-                        <p class="profile-title">PhD Student</p>
-                        <p class="profile-affiliation">
-                            <a href="https://ece.duke.edu/" target="_blank">Electrical & Computer Engineering</a><br>
-                            <a href="https://duke.edu/" target="_blank">Duke University</a>
-                        </p>
-
-                        <div class="profile-links">
-                            <a href="mailto:lavsen.dahal@duke.edu" title="Email">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                            <a href="https://scholar.google.com/citations?user=52zp7VkAAAAJ&hl=en" target="_blank" title="Google Scholar">
-                                <i class="fas fa-graduation-cap"></i>
-                            </a>
-                            <a href="https://linkedin.com/in/lavsen" target="_blank" title="LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://x.com/lavsendahal" target="_blank" title="X">
-                                <i class="fab fa-x-twitter"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- About Section -->
-            <section class="about-section">
-                <p class="about-text">
-                    I am a PhD student in Electrical & Computer Engineering at Duke University, working at the
-                    <a href="https://cvit.duke.edu/" target="_blank">Center for Virtual Imaging Trials</a>.
-                    My research focuses on developing advanced computer vision and AI methods for medical imaging applications.
-                </p>
-
-                <p class="about-text">
-                    My work spans <strong>vision-language models</strong> for disease localization,
-                    <strong>multi-modal segmentation</strong> algorithms, and the creation of
-                    <strong>anatomical digital twins</strong> for synthetic imaging experiments.
-                    I'm particularly interested in self-supervised and weakly-supervised learning approaches
-                    that reduce the annotation burden in medical AI.
-                </p>
-
-               <p class="about-text">
-                    Before joining Duke, I earned my Erasmus Mundus Joint Master's in
-                    Medical Imaging and Applications (MAIA) as an Erasmus+ Scholar, studying at the
-                    <a href="https://www.u-bourgogne.fr/" target="_blank">University of Burgundy</a> (France),
-                    <a href="https://www.unicas.it/" target="_blank">University of Cassino and Southern Lazio</a> (Italy), and
-                    <a href="https://www.udg.edu/" target="_blank">University of Girona</a> (Spain).
-                    My education and research have taken me across Europe, Asia, and North America,
-                    with research experience at
-                    <a href="https://vicorob.udg.edu/" target="_blank">VICOROB Lab</a> in Spain,
-                    <a href="https://biomedia.doc.ic.ac.uk/" target="_blank">BioMedIA Lab</a> at Imperial College London,
-                    <a href="https://www.naamii.org.np/" target="_blank">NAAMII</a> in Nepal, and
-                    <a href="https://cvit.duke.edu/" target="_blank">CVIT</a> at Duke University.
-                </p>
-                
-            </section>
-
-            <!-- Research Interests -->
-            <section class="section">
-                <h2 class="section-heading">research interests</h2>
-                <div class="interests-list">
-                    <span class="interest-tag">Computer Vision</span>
-                    <span class="interest-tag">Medical Imaging</span>
-                    <span class="interest-tag">Vision-Language Models</span>
-                    <span class="interest-tag">Multi-Modal Learning</span>
-                    <span class="interest-tag">3D Medical Imaging</span>
-                    <span class="interest-tag">Deep Learning</span>
-                    <span class="interest-tag">Self-Supervised Learning</span>
-                    <span class="interest-tag">Digital Twins</span>
-                </div>
-            </section>
-
-            <!-- Selected Publications -->
-            <section class="section">
-                <h2 class="section-heading">selected publications</h2>
-                <div class="publications-list-minimal">
-
-                    <div class="pub-item">
-                        <div class="pub-title">Organ-Aware Attention Improves CT Triage and Classification</div>
-                        <div class="pub-authors"><strong>L. Dahal</strong>, et al.</div>
-                        <div class="pub-venue">arXiv preprint, 2025</div>
-                        <div class="pub-links">
-                            <a href="https://arxiv.org/abs/2601.13385" target="_blank">arxiv</a>
-                        </div>
-                    </div>
-
-                    <div class="pub-item">
-                        <div class="pub-title">XCAT 3.0: A Comprehensive Library of Personalized Digital Twins Derived from CT Scans</div>
-                        <div class="pub-authors"><strong>L. Dahal</strong>, M. Ghojoghnejad, L. Vancoillie, D. Ghosh, et al.</div>
-                        <div class="pub-venue">Medical Image Analysis, 2025</div>
-                        <div class="pub-links">
-                            <a href="https://xcat-3.github.io" target="_blank">project page</a>
-                        </div>
-                    </div>
-
-                    <div class="pub-item">
-                        <div class="pub-title">Automatic Quality Control in Computed Tomography Volumes Segmentation Using a Small Set of XCAT as Reference Images</div>
-                        <div class="pub-authors"><strong>L. Dahal</strong>, Y. Wang, F.I. Tushar, I. Montero, et al.</div>
-                        <div class="pub-venue">Medical Imaging 2023: Image Processing</div>
-                    </div>
-
-                    <div class="pub-item">
-                        <div class="pub-title">Uncertainty Estimation in Deep 2D Echocardiography Segmentation</div>
-                        <div class="pub-authors"><strong>L. Dahal</strong>, A. Kafle, B. Khanal</div>
-                        <div class="pub-venue">arXiv preprint, 2020</div>
-                    </div>
-                </div>
-
-                <div class="view-all-link">
-                    <a href="publications.html">view all publications →</a>
-                </div>
-            </section>
-
-            <!-- News (Optional - can add later) -->
-            <!--
-            <section class="section">
-                <h2 class="section-heading">news</h2>
-                <div class="news-list">
-                    <div class="news-item">
-                        <span class="news-date">Jan 2025</span>
-                        <span class="news-content">Paper accepted at CVPR 2025</span>
-                    </div>
-                </div>
-            </section>
-            -->
-
+    <article class="work-item">
+      <a class="work-media" href="assets/projects/oracle-attention-full.webp" target="_blank" rel="noopener noreferrer" aria-label="Open ORACLE-CT full figure">
+        <img src="assets/projects/oracle-attention-detail.webp" alt="ORACLE-CT anatomy-aware support pooling attention comparisons" loading="lazy" decoding="async">
+      </a>
+      <div class="work-body">
+        <h2>ORACLE-CT: Anatomy-Aware Support Pooling for CT Classification</h2>
+        <p class="work-meta">arXiv:2606.05460 · 2026 · 3D Medical Vision</p>
+        <p>An encoder-agnostic framework (evaluated across DINOv3, I3D-ResNet, and Pillar-0) that uses multi-organ segmentation to define label-specific anatomical supports, improving disease discrimination, external transfer robustness, and auditable spatial evidence in 3D CT.</p>
+        <div class="work-links">
+          <a href="https://arxiv.org/abs/2606.05460" target="_blank" rel="noopener noreferrer">Paper (arXiv) ↗</a>
+          <a href="https://github.com/lavsendahal/oracle-ct" target="_blank" rel="noopener noreferrer">Code ↗</a>
+          <a href="assets/projects/oracle-attention-full.webp" target="_blank" rel="noopener noreferrer">Full figure ↗</a>
         </div>
-    </main>
+      </div>
+    </article>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container-narrow">
-            <p>&copy; 2025 Lavsen Dahal</p>
+    <article class="work-item">
+      <a class="work-media" href="assets/projects/xcat-diversity.webp" target="_blank" rel="noopener noreferrer" aria-label="Open XCAT 3.0 diversity figure">
+        <img src="assets/projects/xcat-diversity.webp" alt="Personalized XCAT 3.0 computational phantoms showing anatomical diversity" loading="lazy" decoding="async">
+      </a>
+      <div class="work-body">
+        <h2>XCAT 3.0: Personalized Digital Twins from CT</h2>
+        <p class="work-meta">Medical Image Analysis · 2025 · Computational Phantoms</p>
+        <p>A framework for generating personalized anatomical digital twins directly from clinical CT scans, released with over 2,500 computational phantoms and up to 140 anatomical structures.</p>
+        <div class="work-links">
+          <a href="https://xcat-3.github.io/" target="_blank" rel="noopener noreferrer">Project page ↗</a>
         </div>
-    </footer>
+      </div>
+    </article>
 
-    <script src="script.js"></script>
+    <article class="work-item text-only">
+      <div class="work-body">
+        <h2>AI Agentic Workflow for Cardiovascular CT</h2>
+        <p class="work-meta">Manuscript in preparation · Siemens Healthineers (Internship) · AI Agents</p>
+        <p>Developed an AI agentic workflow for cardiovascular CT covering 150+ findings during my six-month research internship with the cardiovascular imaging team at Siemens Healthineers, connecting imaging datasets, model evaluation, and structured clinical analysis.</p>
+      </div>
+    </article>
+
+    <p class="note"><strong>Broader question:</strong> How can personalized digital humans, physiological simulation, and autonomous experimentation accelerate biomedical discovery and in-silico testing?</p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>Lavsen Dahal · Durham, NC</span>
+  <span><a href="mailto:lavsen.dahal@duke.edu">lavsen.dahal@duke.edu</a></span>
+</footer>
+
+<script src="pointcloud.js" defer></script>
+<script src="project-motion.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dynamic Anatomical Twins — Lavsen Dahal</title>
+<meta name="description" content="Physiologically grounded 4D respiratory motion from a single static 3D anatomical segmentation: rigid ribcage kinematics, conforming costal cartilages, pulmonary vasculature, abdominal wall mechanics, and deformed 4D attenuation volumes.">
+<meta name="theme-color" content="#ffffff">
+<style>
+:root{
+  --paper:#ffffff;
+  --surface:#f5f6f8;
+  --theater:#0b0e12;
+  --ink:#111317;
+  --muted:#5a6270;
+  --line:#e2e5ea;
+  --accent:#184a8c;
+  --accent-soft:#eaf1fb;
+  --sans:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:4px}
+button{font:inherit}
+.wrap{width:min(1180px,calc(100% - 64px));margin:auto}
+
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:10px 0}
+.brand{display:flex;align-items:center;gap:14px}
+.wordmark{text-decoration:none;font-size:16px;font-weight:600;letter-spacing:-.4px;color:var(--ink)}
+.wordmark span{color:var(--accent)}
+.back{font-size:13px;color:var(--muted);text-decoration:none;padding-left:14px;border-left:1px solid var(--line)}
+.back:hover{color:var(--ink)}
+
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:3px;gap:3px}
+.seg button{border:0;background:transparent;color:var(--muted);padding:6px 13px;border-radius:5px;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .15s}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.ctrl{border:1px solid var(--line);background:#fff;color:var(--ink);padding:7px 12px;border-radius:6px;font-size:12.5px;font-weight:500;cursor:pointer}
+.ctrl:hover{border-color:var(--ink)}
+
+.hero{padding:52px 0 36px}
+.kicker{font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.3px;margin-bottom:12px}
+.hero h1{font-size:clamp(34px,4vw,48px);font-weight:600;letter-spacing:-1.4px;line-height:1.12;margin:0 0 16px}
+.hero-lead{max-width:740px;color:var(--muted);font-size:16.5px;line-height:1.7;margin:0 0 24px}
+.mode-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-bottom:24px}
+.mode-summary{font-size:13.5px;color:var(--ink)}
+.mode-summary strong{font-weight:600}
+.mode-metrics{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+
+.featured{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.theater{background:var(--theater);position:relative;overflow:hidden}
+.theater video,.theater img{display:block;width:100%;height:auto}
+.theater-tag{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.85);background:rgba(11,14,18,.72);border:1px solid rgba(255,255,255,.14);padding:4px 10px;border-radius:5px}
+.card-meta{padding:18px 22px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.card-meta h2,.card-meta h3{margin:0;font-size:18px;font-weight:600;letter-spacing:-.3px}
+.card-meta p{margin:4px 0 0;font-size:13.5px;color:var(--muted)}
+
+.section-label{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);margin:44px 0 16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.card .theater{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center}
+.card .theater video,.card .theater img{width:100%;height:100%;object-fit:contain}
+.card .card-meta{padding:16px 18px;flex:1;align-items:flex-start;flex-direction:column;gap:4px}
+.card .card-meta h3{font-size:16.5px}
+.card .card-meta p{font-size:13px;line-height:1.55}
+
+.method{margin:52px 0;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.method h2{margin:0 0 18px;font-size:22px;font-weight:600;letter-spacing:-.4px}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.method-item h3{margin:0 0 6px;font-size:14.5px;font-weight:600;color:var(--ink)}
+.method-item p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.6}
+.method-note{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:14px;color:#3d4450;line-height:1.65}
+.method-note strong{color:var(--ink);font-weight:600}
+
+footer{border-top:1px solid var(--line);padding:24px 0;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+
+@media(max-width:860px){
+  .wrap{width:calc(100% - 32px)}
+  .grid,.method-grid{grid-template-columns:1fr}
+  .method{padding:22px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <a class="wordmark" href="index.html">Lavsen Dahal<span>.</span></a>
+      <a class="back" href="index.html">← Back to home</a>
+    </div>
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="Breathing mode">
+        <button type="button" id="btn-normal" data-mode="normal" aria-pressed="false">Quiet Breathing</button>
+        <button type="button" id="btn-deep" data-mode="deep" aria-pressed="true">Deep Inspiration (DIBH)</button>
+      </div>
+      <button type="button" class="ctrl" id="playAll">Play</button>
+      <button type="button" class="ctrl" id="pauseAll">Pause</button>
+      <button type="button" class="ctrl" id="syncAll">Sync</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="kicker">Ongoing Research · 4D Physiological Simulation</div>
+    <h1>Dynamic Anatomical Twins</h1>
+    <p class="hero-lead">Starting from a single static 3D anatomical segmentation, our parameter-driven biomechanics solver generates continuous, physiologically grounded 4D respiratory motion—producing watertight organ meshes, fold-free deformation fields, and deformed 4D attenuation volumes without image registration or training data.</p>
+
+    <div class="mode-bar">
+      <div class="mode-summary" id="modeSummary"><strong>Deep Inspiration (DIBH)</strong> — Coached deep breath showing full ribcage elevation, pulmonary vascular expansion, and abdominal wall bulge.</div>
+      <div class="mode-metrics" id="modeMetrics">
+        <span>Diaphragm: 5.0 cm</span>
+        <span>Chest AP: 2.0 cm</span>
+        <span>Cycle: 8.0 s</span>
+      </div>
+    </div>
+
+    <article class="featured" data-key="anatomy">
+      <div class="theater">
+        <span class="theater-tag" data-role="tag">Deep Inspiration · Complete 3D Anatomy</span>
+        <video class="sync-vid" data-role="vid" controls muted loop playsinline poster="assets/motion/deep/anatomy-poster.png" src="assets/motion/deep/anatomy-motion.webm"></video>
+      </div>
+      <div class="card-meta">
+        <div>
+          <h2>Complete 3D Anatomy</h2>
+          <p>Full-body organs, lungs, rigid skeleton, costal cartilages, and outer body envelope moving in a synchronized respiratory cycle.</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <div class="section-label">Anatomical Subsystems</div>
+  <section class="grid">
+    <article class="card" data-key="ribcage">
+      <div class="theater">
+        <span class="theater-tag" data-role="tag">Deep Inspiration · Ribcage</span>
+        <video class="sync-vid" data-role="vid" controls muted loop playsinline poster="assets/motion/deep/ribcage-poster.png" src="assets/motion/deep/ribcage-motion.webm"></video>
+      </div>
+      <div class="card-meta">
+        <h3>Complete Ribcage &amp; Cartilage</h3>
+        <p>Rigid costovertebral rib rotation scaled physiologically across upper and lower ribs (6°–12° FRC-to-TLC) with conforming costal cartilages, stationary spine, and floating ribs.</p>
+      </div>
+    </article>
+
+    <article class="card" data-key="vessels">
+      <div class="theater">
+        <span class="theater-tag" data-role="tag">Deep Inspiration · Vasculature</span>
+        <video class="sync-vid" data-role="vid" controls muted loop playsinline poster="assets/motion/deep/vessels-poster.png" src="assets/motion/deep/vessels-motion.webm"></video>
+      </div>
+      <div class="card-meta">
+        <h3>Pulmonary Vessels &amp; Airways</h3>
+        <p>Airways (cyan), pulmonary arteries (red), and pulmonary veins (blue) deforming smoothly with the surrounding lung parenchyma.</p>
+      </div>
+    </article>
+
+    <article class="card" data-key="muscles">
+      <div class="theater">
+        <span class="theater-tag" data-role="tag">Deep Inspiration · Musculature</span>
+        <video class="sync-vid" data-role="vid" controls muted loop playsinline poster="assets/motion/deep/muscles-poster.png" src="assets/motion/deep/muscles-motion.webm"></video>
+      </div>
+      <div class="card-meta">
+        <h3>Torso Muscles &amp; Soft Tissue</h3>
+        <p>Skeletal muscle and adipose body wall coupled to the moving ribcage and decoupled from internal visceral sliding.</p>
+      </div>
+    </article>
+
+    <article class="card" id="ctCard">
+      <div class="theater">
+        <span class="theater-tag" id="ctTag">Deep Inspiration · 4D Attenuation (HU)</span>
+        <img id="ctImg" src="assets/motion/deep/attenuation_4d.gif?v=3" alt="Deformed 4D linear attenuation map in coronal and sagittal Hounsfield Unit views">
+      </div>
+      <div class="card-meta">
+        <h3>Deformed 4D Attenuation Map (Coronal &amp; Sagittal HU)</h3>
+        <p>Baseline 3D linear attenuation volume (converted to HU, window [-1000, 400]) warped frame-by-frame through our invertible 3D deformation field—ready as input for physics-based imaging simulation.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="method">
+    <h2>How It Works</h2>
+    <div class="method-grid">
+      <div class="method-item">
+        <h3>1. Rigid Ribcage &amp; Conforming Cartilages</h3>
+        <p>Ribs 1–10 rotate rigidly about their posterior costovertebral axes with chord-length scaling for short upper ribs, while a tetrahedral cartilage network maintains sub-millimeter bone–cartilage attachment.</p>
+      </div>
+      <div class="method-item">
+        <h3>2. Coupled Viscera &amp; Abdominal Mechanics</h3>
+        <p>Internal organs slide smoothly inside the thoracic and peritoneal cavities, while incompressible abdominal coupling (Konno–Mead mechanics) translates diaphragm descent into anterior abdominal wall expansion.</p>
+      </div>
+      <div class="method-item">
+        <h3>3. Invertible 4D Meshes &amp; Volumes</h3>
+        <p>Stationary velocity integration produces fold-free, invertible deformation fields (min Jacobian &gt; 0) that simultaneously deform surface meshes, internal vasculature, and 4D attenuation volumes.</p>
+      </div>
+    </div>
+    <p class="method-note">
+      <strong>Broader context:</strong> Moving from static anatomical twins to controllable, physiologically grounded 4D human models establishes a foundation for virtual patient populations, imaging physics simulation, and broader biomedical modeling and in-silico testing.
+    </p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>© <span id="year">2026</span> Lavsen Dahal · Dynamic Anatomical Twins</span>
+  <a href="index.html">← Back to lavsendahal</a>
+</footer>
+
+<script>
+(() => {
+  const MODES = {
+    normal: {
+      dir: 'assets/motion/normal',
+      short: 'Quiet Breathing',
+      summary: '<strong>Quiet Breathing (Normal)</strong> — Resting tidal cycle (~0.6 L lung excursion) with subtle chest and upper-abdominal motion.',
+      metrics: ['Diaphragm: 2.0 cm', 'Chest AP: 0.5 cm', 'Cycle: 5.0 s']
+    },
+    deep: {
+      dir: 'assets/motion/deep',
+      short: 'Deep Inspiration',
+      summary: '<strong>Deep Inspiration (DIBH)</strong> — Coached deep breath (~1.6 L lung excursion) showing full ribcage elevation, pulmonary vascular expansion, and abdominal wall bulge.',
+      metrics: ['Diaphragm: 5.0 cm', 'Chest AP: 2.0 cm', 'Cycle: 8.0 s']
+    }
+  };
+
+  const videos = Array.from(document.querySelectorAll('.sync-vid'));
+  const buttons = Array.from(document.querySelectorAll('[data-mode]'));
+  const summary = document.getElementById('modeSummary');
+  const metrics = document.getElementById('modeMetrics');
+  const ctImg = document.getElementById('ctImg');
+  const ctTag = document.getElementById('ctTag');
+
+  function setMode(mode) {
+    const cfg = MODES[mode];
+    if (!cfg) return;
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+    summary.innerHTML = cfg.summary;
+    metrics.innerHTML = cfg.metrics.map(m => '<span>' + m + '</span>').join('');
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const key = el.dataset.key;
+      const vid = el.querySelector('[data-role="vid"]');
+      const tag = el.querySelector('[data-role="tag"]');
+      if (vid) {
+        vid.poster = cfg.dir + '/' + key + '-poster.png';
+        vid.src = cfg.dir + '/' + key + '-motion.webm';
+        vid.load();
+      }
+      if (tag) {
+        const suffix = tag.textContent.split('·')[1] || '';
+        tag.textContent = cfg.short + ' ·' + suffix;
+      }
+    });
+    if (ctImg) ctImg.src = cfg.dir + '/attenuation_4d.gif?v=3';
+    if (ctTag) ctTag.textContent = cfg.short + ' · 4D Attenuation (HU)';
+    videos.forEach(v => { v.currentTime = 0; v.play().catch(() => {}); });
+  }
+
+  buttons.forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  document.getElementById('playAll').addEventListener('click', () => videos.forEach(v => v.play().catch(() => {})));
+  document.getElementById('pauseAll').addEventListener('click', () => videos.forEach(v => v.pause()));
+  document.getElementById('syncAll').addEventListener('click', () => videos.forEach(v => { v.currentTime = 0; v.play().catch(() => {}); }));
+  videos.forEach(v => v.play().catch(() => {}));
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

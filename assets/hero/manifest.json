@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "coordinateSystem": "Source RAS mm, translated to torso-centered display coordinates",
+  "motion": {
+    "file": "motion.bin",
+    "groups": "motion-groups.bin",
+    "pointCount": 8050,
+    "frames": 10,
+    "units": "mm",
+    "quantizationMm": 0.1,
+    "bounds": [
+      [
+        -174.45693389945546,
+        -126.25,
+        -288.46631567149075
+      ],
+      [
+        174.29306610054454,
+        131.25,
+        289.03368432850925
+      ]
+    ],
+    "ribLines": {
+      "file": "rib-lines.bin",
+      "lineCount": 24,
+      "samplesPerLine": 100,
+      "frames": 10,
+      "description": "Mask-derived B-spline rib centerlines, transformed by the actual saved bone poses"
+    },
+    "periodSeconds": 5,
+    "type": "Actual research visualization",
+    "caption": "Synthetic phantom \u00b7 regional respiratory baseline v0.1 \u00b7 ongoing",
+    "sampling": "Area-weighted surface samples; actual regional motion; projected to saved soft surfaces. Visual correspondence, not tissue tracking.",
+    "maximumSurfaceProjectionMm": 48.63951473967569
+  }
+}
